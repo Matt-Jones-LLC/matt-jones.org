@@ -22,7 +22,7 @@ The lab is a separate release surface, not a redirect or a second name for the s
 
 The main arcade still lives in `matt-jones-org/website`. The experimental arcade has its own public repository, [Matt-Jones-LLC/coolmattgames.io](https://github.com/Matt-Jones-LLC/coolmattgames.io), with a GitHub Pages preview while custom-domain DNS is being arranged.
 
-Datadog browser integration is included on all three sites. Public RUM configuration is in `assets/monitoring-config.js` under each site's web root. Until its application ID and client token are filled, no monitoring data is sent. See [monitoring](docs/monitoring.md).
+Datadog browser integration is included on all three sites. Public RUM configuration is in `assets/monitoring-config.js` under each site's web root. The shared **Matt Jones LLC Websites** RUM application is configured; diagnostics send only after visitor opt-in. See [monitoring](docs/monitoring.md).
 
 The optional Actions templates remain in `docs/workflows/`; the CLI login lacks `workflow` scope. **Pages works without them.** To enable CI later, grant that scope and copy `check.yml` to `.github/workflows/`. The optional `pages.yml` template is an alternative deployment method; change Pages source to Actions before using it.
 

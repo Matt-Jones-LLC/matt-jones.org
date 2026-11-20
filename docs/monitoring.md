@@ -16,7 +16,7 @@ The footer allows withdrawal. Global Privacy Control and Do Not Track block coll
 
 Create a Browser RUM application in Datadog (one shared application can cover these sites with service and website tags, or use one application per site). Copy its application ID, **browser client token**, Datadog site/region and matching CDN URL into the public config. Never put API keys or application keys in browser code. RUM is subject to the Datadog account's plan and usage billing; this setup does not change the subscription or configure Synthetic test schedules.
 
-The connected Datadog account had no RUM applications when checked. Integration code is deployed disabled until credentials are configured. After activation, opt in on each live site and verify an actual view event in Datadog, grouped by `service` and `env`. Do not call monitoring verified until those events arrive.
+The **Matt Jones LLC Websites** Browser RUM application was created on November 20, 2026. Application ID: `6c7b3880-28be-4c01-9f08-8cd41767d395`, region: US1 (`datadoghq.com`). Its public browser client token is configured on all three sites. The optional remote-configuration ID is deliberately omitted so the checked-in no-replay settings remain authoritative. After activation, opt in on each live site and verify an actual view event in Datadog, grouped by `service` and `env`. Do not call monitoring verified until those events arrive.
 
 ## Verification
 
