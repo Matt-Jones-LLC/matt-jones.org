@@ -12,25 +12,19 @@ Matt Jones, LLC is the company behind **[Cool Matt Games](https://coolmatt.games
 | --- | --- | --- |
 | **matt-jones.org** | The company: our work, leadership, and contact information. Professional, focused, and separate from the arcade’s visual identity. | `Matt-Jones-LLC/matt-jones.org` — this repository |
 | **[coolmatt.games](https://coolmatt.games)** | The main arcade. Finished games and the stable player experience. | `Matt-Jones-LLC/cool-matt-games` — proposed migration of the existing arcade |
-| **coolmattgames.io** | The experimental arcade. Test games, alternate backgrounds, different scripting methods, and new ideas. | `Matt-Jones-LLC/coolmattgames.io` — planned |
+| **coolmattgames.io** | The experimental arcade. Test games, alternate backgrounds, different scripting methods, and new ideas. | `Matt-Jones-LLC/coolmattgames.io` — experimental arcade |
 
 The lab is a separate release surface, not a redirect or a second name for the same site. A successful experiment can graduate to the main arcade through a reviewed change; deploying the lab must never deploy production.
 
 ### Current launch status
 
-GitHub Actions templates are saved in `docs/workflows/`, not enabled yet: the current GitHub CLI authorization lacks the `workflow` scope. After granting that scope, enable them with:
+**The company site is live at [matt-jones.org](https://matt-jones.org), with HTTPS.** This repository is public. GitHub Pages publishes the root of the `pages` branch; only files from `site/` are copied there.
 
-```bash
-gh auth refresh -h github.com -s workflow
-mkdir -p .github/workflows
-cp docs/workflows/*.yml .github/workflows/
-git add .github/workflows
-git commit -m "Enable checks and deployment workflows"
-git push
-```
+The main arcade still lives in `matt-jones-org/website`. The experimental arcade has its own public repository, [Matt-Jones-LLC/coolmattgames.io](https://github.com/Matt-Jones-LLC/coolmattgames.io), with a GitHub Pages preview while custom-domain DNS is being arranged.
 
+Datadog browser integration is included on all three sites. Public RUM configuration is in `assets/monitoring-config.js` under each site's web root. Until its application ID and client token are filled, no monitoring data is sent. See [monitoring](docs/monitoring.md).
 
-This repository supplies the company website and cloud-development configuration. It does **not** itself change DNS or move the existing arcade. At preparation time, production lives in `matt-jones-org/website`; `matt-jones.org` is served by the existing redirect repository, and `coolmattgames.io` forwards to the arcade. Domain cutover and the experimental arcade are still pending. See [hosting and migration](docs/hosting.md).
+The optional Actions templates remain in `docs/workflows/`; the CLI login lacks `workflow` scope. **Pages works without them.** To enable CI later, grant that scope and copy `check.yml` to `.github/workflows/`. The optional `pages.yml` template is an alternative deployment method; change Pages source to Actions before using it.
 
 ## What belongs here
 
@@ -145,7 +139,17 @@ Never commit `.env` files, API keys, `.venv/`, or Claude authentication files. S
 
 ## Publishing
 
-The company website has no runtime backend, external fonts, or build step. Once enabled, only `site/` is uploaded by the **Publish company website** workflow. The first launch is manual so the domain can be moved deliberately. [Hosting instructions](docs/hosting.md) cover Pages eligibility, domain ownership, email preservation, release separation, and rollback.
+The company website uses buildless HTML/CSS with optional Datadog browser diagnostics. After testing and committing source changes on `main`:
+
+```bash
+bash scripts/check.sh
+node --test tests/monitoring.test.cjs
+bash scripts/deploy-pages.sh
+```
+
+The deploy script requires a clean checkout, pushes `main`, copies only `site/` into a temporary checkout of the existing `pages` branch, and pushes a normal commit. It never force-pushes and preserves the custom-domain CNAME. GitHub Pages then builds the branch automatically.
+
+[Hosting instructions](docs/hosting.md) record domain ownership, email preservation, release separation, and rollback.
 
 ## Contact and ownership
 
