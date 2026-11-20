@@ -21,3 +21,11 @@ The **Matt Jones LLC Websites** Browser RUM application was created on November 
 ## Verification
 
 The company repository includes `tests/monitoring.test.cjs`. Run `node --test tests/monitoring.test.cjs`. It checks default-off behavior, consent, withdrawal during SDK download, URL sanitization, privacy signals, preview blocking, and resilience to CDN failure.
+
+## Verified live — November 20, 2026
+
+The Datadog application reported “Instrumented successfully” and “Receiving data.” A RUM API query confirmed actual events from `matt-jones-company`, `cool-matt-games`, and `cool-matt-games-lab`, with the intended production/experimental tags and version `2026-11-20.2`. A main-arcade `game_start` action arrived for Corner Shot and a lab `renderer_change` action arrived after choosing Canvas.
+
+The lab event came from the live GitHub Pages preview; `coolmattgames.io` still forwards to production pending GoDaddy DNS access. Monitoring must be rechecked on the custom hostname after cutover.
+
+The local checks passed: three Python site tests, five browser-monitoring behavior tests, Ruff, Bash syntax, and lab link validation. All three GitHub Pages deployments succeeded. No subscription changes or scheduled Synthetic tests were created.
