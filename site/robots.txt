@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://matt-jones.org/sitemap.xml
