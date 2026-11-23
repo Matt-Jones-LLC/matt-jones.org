@@ -50,8 +50,10 @@ cat > .devcontainer/devcontainer.json <<'EOF'
   "remoteEnv": {"PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"}
 }
 EOF
-cat > CLAUDE.md <<'EOF'
-# Project instructions
+cat > AGENTS.md <<'EOF'
+# Project instructions for AI agents
+
+The rulebook for every AI tool here (Claude Code, Codex, ChatGPT). CLAUDE.md imports it.
 
 - Use uv add <package> and uv run <command>. Never use raw pip.
 - Start with bash scripts/setup.sh; keep uv.lock committed.
@@ -60,6 +62,13 @@ cat > CLAUDE.md <<'EOF'
 - Never commit .env files, API keys, credentials, or .venv/.
 - Startup prepares dependencies; it must not create repos, commit, push, or deploy.
 - Add tests for actual behavior. Explain changes and verification.
+EOF
+cat > CLAUDE.md <<'EOF'
+# Claude Code instructions
+
+@AGENTS.md
+
+Add or change rules in AGENTS.md, not here, so every AI tool follows them.
 EOF
 cat > main.py <<'EOF'
 def greeting(name: str) -> str:

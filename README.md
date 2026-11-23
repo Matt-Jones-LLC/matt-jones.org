@@ -44,7 +44,8 @@ scripts/
 .claude/settings.json  Cloud session startup hook
 .devcontainer/         GitHub Codespaces environment
 docs/workflows/        Ready-to-enable checks and Pages workflow templates
-CLAUDE.md              Instructions Claude reads while working
+AGENTS.md              Shared instructions for Claude Code, Codex, and ChatGPT
+CLAUDE.md              Imports AGENTS.md for Claude Code
 uv.lock                Committed Python dependency resolution
 ```
 
@@ -81,7 +82,7 @@ The repository is ready for this connection; creating it does not install the Cl
 
 A useful first prompt:
 
-> Read README.md and CLAUDE.md. Run the checks, then implement one focused improvement. Explain the behavior change and how you verified it. Keep production and experimental arcade releases separate.
+> Read README.md and AGENTS.md. Run the checks, then implement one focused improvement. Explain the behavior change and how you verified it. Keep production and experimental arcade releases separate.
 
 ### Option C: On your computer
 
@@ -115,7 +116,7 @@ From a parent directory where you keep projects:
 bash /path/to/matt-jones.org/scripts/new-project.sh my-vibe-app
 ```
 
-This creates a new folder with Python 3.12, uv, Ruff, pytest, an initial test, CLAUDE.md, Codespaces configuration, a Claude cloud hook, and a local Git commit. It refuses to overwrite an existing folder. To also create and push a **private** organization repository:
+This creates a new folder with Python 3.12, uv, Ruff, pytest, an initial test, AGENTS.md and CLAUDE.md, Codespaces configuration, a Claude cloud hook, and a local Git commit. It refuses to overwrite an existing folder. To also create and push a **private** organization repository:
 
 ```bash
 bash /path/to/matt-jones.org/scripts/new-project.sh my-vibe-app --push

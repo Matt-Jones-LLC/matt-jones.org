@@ -46,5 +46,5 @@ def test_company_identity_and_approved_leadership():
 
 
 def test_private_files_are_outside_published_directory():
-    forbidden = {".env", "CLAUDE.md", "uv.lock", "pyproject.toml", "README.md"}
+    forbidden = {".env", "AGENTS.md", "CLAUDE.md", "uv.lock", "pyproject.toml", "README.md"}
     assert not any(file.name in forbidden for file in SITE.rglob("*"))
