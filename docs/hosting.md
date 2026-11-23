@@ -5,7 +5,7 @@
 - The existing apex DNS already points to GitHub Pages. No email DNS was edited. The www CNAME currently points at `matt-jones-org.github.io` and resolves correctly; aligning it to `matt-jones-llc.github.io` is recommended at the next DNS maintenance.
 - Deploy with `bash scripts/deploy-pages.sh`. GitHub Actions authorization is not needed for this branch-based deployment.
 - Old redirect repository: `matt-jones-org/matt-jones-org-redirect`. Its domain assignment was removed; its source remains available for rollback.
-- `coolmattgames.io` still needs GoDaddy forwarding removed and website DNS changed. The experimental repository is separate from production.
+- `coolmattgames.io` was cut over on November 22, 2026: GoDaddy forwarding removed, apex A records and the `www` CNAME pointed at GitHub Pages, and the domain attached to `Matt-Jones-LLC/coolmattgames.io`. The experimental repository is separate from production.
 
 The following is the original cutover reference. Its initial-state descriptions are historical, not current status.
 
