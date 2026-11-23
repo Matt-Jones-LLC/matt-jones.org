@@ -45,6 +45,16 @@ def test_company_identity_and_approved_leadership():
     assert "IN DEVELOPMENT" in html
 
 
+def test_flash_is_dead_feature_and_tech_stack():
+    html = (SITE / "index.html").read_text()
+    assert 'id="flash-is-dead"' in html
+    assert 'href="https://flashisdead.com/"' in html
+    assert 'id="stack"' in html
+    for text in ("HTML, CSS, JavaScript", "No plugin required", "Amazon S3", "opt-in"):
+        assert text in html
+    assert "<embed" not in html and "<object" not in html and ".swf" not in html
+
+
 def test_private_files_are_outside_published_directory():
     forbidden = {".env", "AGENTS.md", "CLAUDE.md", "uv.lock", "pyproject.toml", "README.md"}
     assert not any(file.name in forbidden for file in SITE.rglob("*"))
