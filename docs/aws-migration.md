@@ -28,6 +28,10 @@ The default stack creates preview `cloudfront.net` hostnames. It does not edit D
 4. Packaging uses a public-asset allowlist for the root-based arcade and only `site/` for the other two. Operational files and CNAME are excluded. `scripts/deploy-aws.sh` syncs the dedicated bucket, removes stale assets, creates an invalidation, and waits for completion. S3 versions retain rollback copies for 30 days. Deployments are serialized per repo, but a multi-file sync is not atomic; use the previous Git SHA to redeploy if validation fails.
 5. Check preview homepage, every game route with and without trailing slash, CSS/JS/audio assets, keyboard controls and a deliberately missing URL. Verify 404 status and HTTPS. RUM intentionally stays disabled on preview hosts.
 
+## Account plan before production
+
+Claude flagged, and AWS billing documentation confirms, that the current Free account plan ends after six months or when credits are exhausted and the account closes. The console shows May 22, 2027 as the current expiry. Move to a Paid account plan before production DNS cutover; review the billing terms and usage costs first. The prepared stack uses pay-as-you-go CloudFront configuration, not a flat-rate plan. Budget notifications do not enforce a hard spending cap. Source: [AWS account plans](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-plans.html).
+
 ## Custom domains and rollback
 
 Obtain ACM certificates in us-east-1 for each apex and www pair. Add only ACM validation CNAMEs at the existing DNS provider. Update certificate parameters after certificates are ISSUED, wait for CloudFront deployment, and test TLS before cutting traffic.
@@ -53,3 +57,5 @@ Preparation is not deployment. Record stack ID, outputs, deployment run URLs, li
 References: [AWS OAC](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html), [Datadog HTTP tests](https://docs.datadoghq.com/synthetics/api_tests/http_tests/), [Datadog pricing](https://www.datadoghq.com/pricing/).
 
 Workflow activation: `infra/aws-workflow.yml` is a template. Copy it to `.github/workflows/aws.yml` through an account authorized to write workflows before expecting any AWS deployments. The current CLI token lacks that scope; no workflow permission was broadened.
+
+Review collaboration: [Claude migration review](https://claude.ai/chat/78a89a86-f97f-44a0-9f5c-7b8d1a260ec3). Claude independently checked repositories and public DNS; its AWS connector had expired and no Datadog connector was available there. AWS and Datadog inventory above came from Codex’s signed-in AWS console and Datadog connector.
