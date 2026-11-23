@@ -9,3 +9,6 @@ __pycache__/
 .ruff_cache/
 .DS_Store
 _site/
+
+# Staged public AWS deployment artifact
+_aws_site/
