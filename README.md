@@ -4,7 +4,7 @@
 
 Matt Jones, LLC is the company behind **[Cool Matt Games](https://coolmatt.games)**. We build original browser experiences and explore new ideas through hands-on experimentation. This repository is the company’s home base: its website, development conventions, and a repeatable starting point for new projects.
 
-**Matt Jones — Founder & CEO** · **Aaron Oviedo — Founding Advisor**
+**Matt Jones — Founder & CEO**
 
 ## Three addresses. Three clear purposes.
 

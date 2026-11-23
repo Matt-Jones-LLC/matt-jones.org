@@ -39,8 +39,11 @@ def test_published_pages_have_resolvable_local_links():
 
 def test_company_identity_and_approved_leadership():
     html = (SITE / "index.html").read_text()
-    for text in ("Matt Jones, LLC", "Matt Jones", "Founder & CEO", "Aaron Oviedo", "Founding Advisor"):
+    for text in ("Matt Jones, LLC", "Matt Jones", "Founder & CEO"):
         assert text in html
+    leadership = html.split('id="leadership"', 1)[1].split("</section>", 1)[0]
+    assert leadership.count("<article>") == 1
+    assert leadership.count("<h3>") == 1 and "<h3>Matt Jones</h3>" in leadership
     assert "https://coolmatt.games" in html
     assert "IN DEVELOPMENT" in html
 
