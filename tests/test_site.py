@@ -30,7 +30,9 @@ def test_published_pages_have_resolvable_local_links():
             if url.scheme or url.netloc:
                 continue
             if url.path:
-                target = (file.parent / unquote(url.path)).resolve()
+                path = unquote(url.path)
+                base = SITE if path.startswith("/") else file.parent
+                target = (base / path.lstrip("/")).resolve()
                 assert target.is_relative_to(SITE), (file, link)
                 assert target.exists(), (file, link)
             elif url.fragment:
