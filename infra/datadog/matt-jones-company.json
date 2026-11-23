@@ -1,5 +1,5 @@
 {
-  "name": "matt-jones.org HTTPS availability",
+  "name": "mattjonesllc.com HTTPS availability",
   "type": "api",
   "subtype": "http",
   "status": "paused",
@@ -15,7 +15,7 @@
   "config": {
     "request": {
       "method": "GET",
-      "url": "https://matt-jones.org/",
+      "url": "https://mattjonesllc.com/",
       "timeout": 30,
       "follow_redirects": true
     },

@@ -2,7 +2,7 @@ function handler(event) {
   var request = event.request;
   var uri = request.uri;
   var host = request.headers && request.headers.host && request.headers.host.value;
-  var canonical = {'www.matt-jones.org':'matt-jones.org','www.coolmatt.games':'coolmatt.games','www.coolmattgames.io':'coolmattgames.io'};
+  var canonical = {'matt-jones.org':'mattjonesllc.com','www.matt-jones.org':'mattjonesllc.com','www.mattjonesllc.com':'mattjonesllc.com','www.coolmatt.games':'coolmatt.games','coolmattgames.io':'coolmatt.games','www.coolmattgames.io':'coolmatt.games'};
   if (canonical[host]) {
     var query = [];
     Object.keys(request.querystring || {}).forEach(function(k) {

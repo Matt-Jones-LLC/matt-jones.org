@@ -28,5 +28,20 @@ test('www redirects to its own apex without redirecting preview hosts',()=>{
 });
 test('deployed edge function matches the tested source',()=>{
  const template=JSON.parse(fs.readFileSync('infra/sites.cloudformation.json'));
- for(const site of ['Company','Arcade','Lab']) assert.equal(template.Resources[site+'Index'].Properties.FunctionCode,fs.readFileSync('infra/directory-index.js','utf8'));
+ for(const site of ['Company','Arcade']) assert.equal(template.Resources[site+'Index'].Properties.FunctionCode,fs.readFileSync('infra/directory-index.js','utf8'));
+});
+
+test('domain aliases preserve paths and query strings on the correct site',()=>{
+ for (const [host,target] of [['matt-jones.org','mattjonesllc.com'],['www.matt-jones.org','mattjonesllc.com'],['www.mattjonesllc.com','mattjonesllc.com'],['coolmattgames.io','coolmatt.games'],['www.coolmattgames.io','coolmatt.games']]) {
+  const result=context.handler({request:{uri:'/games/shapes/',headers:{host:{value:host}},querystring:{a:{multiValue:[{value:'1'},{value:'2'}]}}}});
+  assert.equal(result.headers.location.value,'https://'+target+'/games/shapes/?a=1&a=2');
+ }
+});
+test('aliases share hosting and no lab or future Flash resources incur charges',()=>{
+ const t=JSON.parse(fs.readFileSync('infra/sites.cloudformation.json'));
+ assert.equal(Object.values(t.Resources).filter(r=>r.Type==='AWS::CloudFront::Distribution').length,2);
+ assert.equal(t.Parameters.MonthlyBudgetUSD.MaxValue,30);
+ assert.deepEqual(t.Resources.CompanyDistribution.Properties.DistributionConfig.Aliases['Fn::If'][1],['mattjonesllc.com','www.mattjonesllc.com','matt-jones.org','www.matt-jones.org']);
+ assert.deepEqual(t.Resources.ArcadeDistribution.Properties.DistributionConfig.Aliases['Fn::If'][1],['coolmatt.games','www.coolmatt.games','coolmattgames.io','www.coolmattgames.io']);
+ assert.ok(!JSON.stringify(t).includes('repo:Matt-Jones-LLC/coolmattgames.io'));
 });
