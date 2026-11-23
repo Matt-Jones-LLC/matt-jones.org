@@ -18,7 +18,7 @@
 | Cool Matt Games | coolmatt.games | coolmattgames.io and both www names | Matt-Jones-LLC/cool-matt-games |
 | Flash Is Dead | flashisdead.com | www decision pending | No repository yet; future standalone video/animation site |
 
-Aliases share their primary site's distribution, certificate and origin. HTTPS 301 redirects retain paths and query strings. Existing experimental source in `coolmattgames.io` stays in GitHub but does not get an independent AWS origin, role, workflow or paid monitor. Flash Is Dead is the third logical site; no Flash resources or monitoring are provisioned until its source, content and delivery costs are reviewed within the SAME $50 total. Do not add self-hosted video delivery or transcoding before that review.
+Aliases share their primary site's distribution, certificate and origin. HTTPS 302 redirects during the rollback window retain paths and query strings. Existing experimental source in `coolmattgames.io` stays in GitHub but does not get an independent AWS origin, role, workflow or paid monitor. Flash Is Dead is the third logical site; no Flash resources or monitoring are provisioned until its source, content and delivery costs are reviewed within the SAME $50 total. Do not add self-hosted video delivery or transcoding before that review.
 
 ## Prepared architecture
 
@@ -69,3 +69,11 @@ References: [AWS OAC](https://docs.aws.amazon.com/AmazonCloudFront/latest/Develo
 Workflow activation: `infra/aws-workflow.yml` is a template. Copy it to `.github/workflows/aws.yml` through an account authorized to write workflows before expecting any AWS deployments. The current CLI token lacks that scope; no workflow permission was broadened.
 
 Review collaboration: [Claude migration review](https://claude.ai/chat/78a89a86-f97f-44a0-9f5c-7b8d1a260ec3). Claude independently checked repositories and public DNS; its AWS connector had expired and no Datadog connector was available there. AWS and Datadog inventory above came from Codex’s signed-in AWS console and Datadog connector.
+
+## Deployment review — November 23, 2026
+
+Matt authorized deployment and clarified that $50/month is a flexible target. Claude reviewed commits 2a94bb1 and 2a1e77e. Fixed network-path redirects from repeated leading slashes/backslashes, excluded credits/refunds from budget accounting, and updated company canonical URLs. Cross-host redirects are temporarily 302 during rollout; change to 301 only after validation and the rollback window. Google Workspace email and the existing Pages CNAME remain unchanged.
+
+Datadog billing UI currently projects $18.03 for November (existing host $18, RUM about $0.03), with standard on-demand rates listed. Two 15-minute HTTP tests total 5,760 scheduled runs per 30 days: $4.15 at $7.20/10,000 before retries and any billing-unit rounding. Reserve $7.20 for scheduled checks while verifying actual billing. Existing usage is separate from migration increments. Low-traffic AWS planning assumptions: under 100 GB transfer, under 1 million viewer requests, less than 1 GB S3 including versions, at most 30 deployments/month, and 3–4 DNS zones. This is an estimate, not a quote or traffic guarantee. Sources: https://www.datadoghq.com/pricing/list/ and https://aws.amazon.com/cloudfront/pricing/pay-as-you-go/ and https://aws.amazon.com/route53/pricing/.
+
+The AWS Settings upgrade UI offers a separate project spend limit that pauses resources at the threshold. $30 was selected during the upgrade flow; payment/upgrade completion remains pending. This control is distinct from AWS Budget notifications. Do not claim the upgrade or spend limit is active until confirmed. Infra integration, certificates, DNS cutover and workflow activation remain pending.

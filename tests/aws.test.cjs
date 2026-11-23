@@ -45,3 +45,16 @@ test('aliases share hosting and no lab or future Flash resources incur charges',
  assert.deepEqual(t.Resources.ArcadeDistribution.Properties.DistributionConfig.Aliases['Fn::If'][1],['coolmatt.games','www.coolmatt.games','coolmattgames.io','www.coolmattgames.io']);
  assert.ok(!JSON.stringify(t).includes('repo:Matt-Jones-LLC/coolmattgames.io'));
 });
+
+test('slash redirects cannot become external network-path redirects',()=>{
+ for (const uri of ['//outside.example/path','///outside.example/path',String.raw`/\outside.example/path`]) {
+  const result=context.handler({request:{uri,querystring:{}}});
+  assert.equal(new URL(result.headers.location.value,'https://coolmatt.games').origin,'https://coolmatt.games');
+ }
+});
+test('alias redirects stay temporary during rollback and budgets exclude credits',()=>{
+ const r=context.handler({request:{uri:'/',headers:{host:{value:'matt-jones.org'}},querystring:{}}});
+ assert.equal(r.statusCode,302);
+ const t=JSON.parse(fs.readFileSync('infra/sites.cloudformation.json'));
+ assert.deepEqual(t.Resources.HostingBudget.Properties.Budget.CostTypes,{IncludeCredit:false,IncludeRefund:false});
+});
