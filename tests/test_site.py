@@ -77,3 +77,17 @@ def test_flash_is_dead_feature_and_tech_stack():
 def test_private_files_are_outside_published_directory():
     forbidden = {".env", "AGENTS.md", "CLAUDE.md", "uv.lock", "pyproject.toml", "README.md"}
     assert not any(file.name in forbidden for file in SITE.rglob("*"))
+
+
+def test_not_found_page_matches_the_banner_and_links_to_each_site():
+    html = (SITE / "404.html").read_text()
+    for marker in ('class="topbar"', 'class="wordmark"', '/assets/site.css'):
+        assert marker in html
+    for link in ('href="https://flashisdead.com/"', 'href="https://coolmatt.games/"'):
+        assert link in html
+    assert "location.replace('https://coolmatt.games'" in html
+
+
+def test_matt_avatar_favicon_is_linked_from_the_home_page():
+    html = (SITE / "index.html").read_text()
+    assert 'favicon.ico' in html and (SITE / "favicon.ico").exists()
