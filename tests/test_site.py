@@ -39,12 +39,29 @@ def test_published_pages_have_resolvable_local_links():
                 assert url.fragment in page.ids, (file, link)
 
 
-def test_company_identity_and_approved_leadership():
+def test_about_page_identity_and_sole_leadership():
     html = (SITE / "index.html").read_text()
-    for text in ("Matt Jones, LLC", "Matt Jones", "Founder & CEO", "Aaron Oviedo", "Founding Advisor"):
+    for text in ("Matt Jones, LLC", "Matt Jones", "Founder &amp; CEO"):
         assert text in html
+    assert "Aaron Oviedo" not in html
     assert "https://coolmatt.games" in html
-    assert "IN DEVELOPMENT" in html
+    assert "coolmattgames.io" in html
+
+
+def test_banner_matches_the_other_sites():
+    html = (SITE / "index.html").read_text()
+    for marker in ('class="topbar"', 'class="brand-orb"', 'class="masthead', 'class="wordmark"', 'class="tagline"', 'class="sky-bubbles"'):
+        assert marker in html
+    assert '<link rel="stylesheet" href="/assets/site.css">' in html
+    assert "arcade" not in html.split("<body", 1)[0].split("<html", 1)[1].split(">", 1)[0]
+
+
+def test_each_site_is_linked_from_the_about_page():
+    html = (SITE / "index.html").read_text()
+    nav = html.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
+    assert 'href="https://flashisdead.com/"' in nav
+    assert 'href="https://coolmatt.games/"' in nav
+    assert 'aria-current="page"' in nav
 
 
 def test_flash_is_dead_feature_and_tech_stack():
