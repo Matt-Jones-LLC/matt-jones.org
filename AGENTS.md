@@ -37,7 +37,7 @@ The domain setup and its rollback are recorded in `docs/hosting.md`.
 
 ## Content rules for this site
 
-- matt-jones.org introduces the company. coolmatt.games is where people play.
+- matt-jones.org is the About section for all the sites (flashisdead.com and coolmatt.games link their About button here). It uses the same banner, top bar and window look as those sites: `site/assets/site.css` and `site.js` are copies of the files in the Flash Is Dead repository, so when the shared look changes there, copy them here too. coolmatt.games is where people play.
 - Nothing private goes in `site/`: no `.env`, `AGENTS.md`, `CLAUDE.md`, `README.md`, or lock files.
   `tests/test_site.py` enforces this.
 - `scripts/new-project.sh` creates new projects. They get their own repository under
