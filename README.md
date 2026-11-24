@@ -10,7 +10,7 @@ Matt Jones, LLC is the company behind **[Cool Matt Games](https://coolmatt.games
 
 | Address | Purpose | Intended repository |
 | --- | --- | --- |
-| **matt-jones.org** | The company: our work, leadership, and contact information. Professional, focused, and separate from the arcade’s visual identity. | `Matt-Jones-LLC/matt-jones.org` — this repository |
+| **matt-jones.org** | The About section for every site: who Matt is, the company, where to find the work, and how to get in touch. It wears the same banner and look as Flash Is Dead and Cool Matt Games, and both of those link their About button here. | `Matt-Jones-LLC/matt-jones.org` — this repository |
 | **[coolmatt.games](https://coolmatt.games)** | The main arcade. Finished games and the stable player experience. | `Matt-Jones-LLC/cool-matt-games` — proposed migration of the existing arcade |
 | **coolmattgames.io** | The experimental arcade. Test games, alternate backgrounds, different scripting methods, and new ideas. | `Matt-Jones-LLC/coolmattgames.io` — experimental arcade |
 
@@ -32,8 +32,8 @@ Company content, shared development instructions, and the scripts that make a ne
 
 ```text
 site/                  Company website; the only folder published
-  index.html           Company, work, leadership, contact
-  assets/              Styles and brand mark
+  index.html           About Matt: mission, work, how it's built, contact
+  assets/              site.css and site.js (copies of the shared look used by flashisdead.com and coolmatt.games), hub.css, art
 scripts/
   bootstrap.sh         Install uv and Python; safe before a clone exists
   setup.sh             Synchronize this checkout from uv.lock
