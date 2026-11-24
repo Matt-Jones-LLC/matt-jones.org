@@ -54,27 +54,21 @@ Matt Jones, LLC is the company. Cool Matt Games is its games brand. The three we
 repositories, and the services around them are one system: a change in one place often has a
 counterpart somewhere else, so check this map before you start.
 
-Status as of 2026-11-22. Confirm anything listed under "Not finished yet" before relying on it.
+Status as of 2026-11-22.
 
 | Address | Purpose | Repository | Publishes from | DNS at |
 | --- | --- | --- | --- | --- |
 | matt-jones.org | Company site | `Matt-Jones-LLC/matt-jones.org` | `pages` branch, a copy of `site/` | Squarespace |
-| coolmatt.games | Main arcade: finished games | `matt-jones-org/cool-matt-games` | GitHub Actions on every push to `main` | GoDaddy |
+| coolmatt.games | Main arcade: finished games | `Matt-Jones-LLC/cool-matt-games` | GitHub Actions on every push to `main` | GoDaddy |
 | coolmattgames.io | Lab: experiments | `Matt-Jones-LLC/coolmattgames.io` | `pages` branch, a copy of `site/` | GoDaddy |
-
-### Not finished yet
-
-- **coolmattgames.io is not live as the lab.** GoDaddy still forwards the domain to coolmatt.games.
-  The lab is reachable only at https://matt-jones-llc.github.io/coolmattgames.io/. Do not write
-  that the lab has launched on its own domain.
-- **The arcade repository is still under the personal account `matt-jones-org`.** The plan is to
-  transfer it to the `Matt-Jones-LLC` organization, keeping its history, license, and Pages setup.
 
 ### Services
 
-- **GitHub.** `Matt-Jones-LLC` is the organization and the home for company work. `matt-jones-org`
-  is Matt's personal account. New repositories go under `Matt-Jones-LLC` and start private.
+- **GitHub.** `Matt-Jones-LLC` is the organization, and all three site repositories live there.
+  The arcade moved from Matt's personal account, `matt-jones-org`, on 2026-11-22; GitHub redirects
+  its old address. New repositories go under `Matt-Jones-LLC` and start private.
 - **Hosting.** All three sites are static files on GitHub Pages. There is no server.
+  coolmattgames.io has served the lab since 2026-11-22; before that it forwarded to coolmatt.games.
 - **Email.** Google Workspace on matt-jones.org. Website work never edits the MX, SPF, DKIM, DMARC,
   or verification records.
 - **Datadog (US1, `datadoghq.com`).** One Browser RUM application, "Matt Jones LLC Websites",

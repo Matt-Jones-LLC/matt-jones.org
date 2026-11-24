@@ -11,7 +11,7 @@ Matt Jones, LLC is the company behind **[Cool Matt Games](https://coolmatt.games
 | Address | Purpose | Intended repository |
 | --- | --- | --- |
 | **matt-jones.org** | The company: our work, leadership, and contact information. Professional, focused, and separate from the arcade’s visual identity. | `Matt-Jones-LLC/matt-jones.org` — this repository |
-| **[coolmatt.games](https://coolmatt.games)** | The main arcade. Finished games and the stable player experience. | `Matt-Jones-LLC/cool-matt-games` — proposed migration of the existing arcade |
+| **[coolmatt.games](https://coolmatt.games)** | The main arcade. Finished games and the stable player experience. | `Matt-Jones-LLC/cool-matt-games` — the arcade |
 | **coolmattgames.io** | The experimental arcade. Test games, alternate backgrounds, different scripting methods, and new ideas. | `Matt-Jones-LLC/coolmattgames.io` — experimental arcade |
 
 The lab is a separate release surface, not a redirect or a second name for the same site. A successful experiment can graduate to the main arcade through a reviewed change; deploying the lab must never deploy production.
@@ -20,7 +20,7 @@ The lab is a separate release surface, not a redirect or a second name for the s
 
 **The company site is live at [matt-jones.org](https://matt-jones.org), with HTTPS.** This repository is public. GitHub Pages publishes the root of the `pages` branch; only files from `site/` are copied there.
 
-The main arcade still lives in `matt-jones-org/website`. The experimental arcade has its own public repository, [Matt-Jones-LLC/coolmattgames.io](https://github.com/Matt-Jones-LLC/coolmattgames.io), with a GitHub Pages preview while custom-domain DNS is being arranged.
+The main arcade lives in [Matt-Jones-LLC/cool-matt-games](https://github.com/Matt-Jones-LLC/cool-matt-games); it was transferred from the personal account `matt-jones-org` on November 22, 2026, and GitHub redirects the old address. The experimental arcade has its own public repository, [Matt-Jones-LLC/coolmattgames.io](https://github.com/Matt-Jones-LLC/coolmattgames.io), and has been served at [coolmattgames.io](https://coolmattgames.io) since November 22, 2026.
 
 Datadog browser integration is included on all three sites. Public RUM configuration is in `assets/monitoring-config.js` under each site's web root. The shared **Matt Jones LLC Websites** RUM application is configured; diagnostics send only after visitor opt-in. See [monitoring](docs/monitoring.md).
 
