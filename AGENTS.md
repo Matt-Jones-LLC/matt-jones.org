@@ -4,7 +4,7 @@ This file is the rulebook for every AI tool that works here (Claude Code, Codex,
 `CLAUDE.md` imports it. Read `README.md` before making changes.
 
 This repository is the company website for matt-jones.org and the starting point for new
-projects. Leadership: Matt Jones, Founder & CEO; Aaron Oviedo, Founding Advisor.
+projects. Leadership: Matt Jones, Founder & CEO. He is the only person named on the site.
 
 ## This repository
 
