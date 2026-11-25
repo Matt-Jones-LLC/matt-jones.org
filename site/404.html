@@ -3,60 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Page not found | Matt Jones, LLC</title>
+<title>Page not found | Matt Jones</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#071a3d">
 <link rel="icon" href="https://matt-jones.org/favicon.ico?v=20261124d" sizes="16x16 32x32 48x48">
-<link rel="icon" type="image/png" sizes="16x16" href="https://matt-jones.org/favicon-16x16.png?v=20261124d">
-<link rel="icon" type="image/png" sizes="32x32" href="https://matt-jones.org/favicon-32x32.png?v=20261124d">
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="stylesheet" href="/assets/hub.css">
-<script defer src="/assets/monitoring-config.js"></script>
-<script defer src="/assets/monitoring.js"></script>
+<link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="sky-bubbles" aria-hidden="true"></div>
 
-<div class="page">
-  <header class="topbar">
-    <a class="brand" href="/"><span class="brand-orb" aria-hidden="true"></span>Matt Jones</a>
-    <nav class="nav" aria-label="Site">
-      <a href="https://flashisdead.com/">Flash Is Dead</a>
-      <a href="https://coolmatt.games/">Cool Matt Games</a>
-      <a href="/">About</a>
-    </nav>
+<div class="wrap">
+  <header class="top">
+    <a class="name" href="/">Matt Jones</a>
   </header>
 
   <main id="main">
-    <div class="masthead with-pal">
-      <div>
-        <h1 class="wordmark">That page moved.</h1>
-        <p class="tagline">There's nothing at this address. Looking for a game or a toon? Both have their own homes.</p>
+    <section class="lead" aria-labelledby="lead-title">
+      <h1 id="lead-title">There is no page at this address.</h1>
+      <p class="now">It may have moved, or the project it belonged to is not public yet.</p>
+      <div class="actions">
+        <a class="btn primary" href="/">Go to the home page</a>
       </div>
-      <div class="heroes">
-        <img class="hero-matt" src="/assets/cast/matt.webp" alt="Matt, a tired-looking cartoon guy in a green plaid shirt over a campfire t-shirt" width="190" height="600">
-      </div>
-    </div>
-
-    <div class="desk">
-      <section class="win wide" aria-labelledby="lost-title">
-        <div class="win-bar">
-          <h2 id="lost-title">Try one of these</h2>
-          <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        </div>
-        <div class="win-body">
-          <div class="btn-row">
-            <a class="btn" href="https://flashisdead.com/">Flash Is Dead</a>
-            <a class="btn" href="https://coolmatt.games/">Cool Matt Games</a>
-            <a class="btn btn-quiet" href="/">About Matt</a>
-          </div>
-        </div>
-      </section>
-    </div>
+    </section>
   </main>
-</div>
 
-<script>if (location.pathname.startsWith('/games/')) location.replace('https://coolmatt.games' + location.pathname + location.search + location.hash);</script>
+  <footer class="foot">
+    <p>Matt Jones, LLC. Houston, Texas, 2026.</p>
+  </footer>
+</div>
 </body>
 </html>

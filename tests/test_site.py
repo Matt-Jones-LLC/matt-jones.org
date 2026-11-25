@@ -39,39 +39,41 @@ def test_published_pages_have_resolvable_local_links():
                 assert url.fragment in page.ids, (file, link)
 
 
-def test_about_page_identity_and_sole_leadership():
+HELD_BACK = ("coolmatt.games", "coolmattgames.io", "flashisdead.com")
+
+
+def test_home_page_identity_and_sole_leadership():
     html = (SITE / "index.html").read_text()
     for text in ("Matt Jones, LLC", "Matt Jones", "Founder &amp; CEO"):
         assert text in html
     assert "Aaron Oviedo" not in html
-    assert "https://coolmatt.games" in html
-    assert "coolmattgames.io" in html
 
 
-def test_banner_matches_the_other_sites():
+def test_held_back_sites_are_not_linked_or_named_by_address():
+    # The arcade, the lab and Flash Is Dead are not public yet. Their addresses forward here,
+    # so no published page may link to them or print their addresses.
+    for file in SITE.rglob("*.html"):
+        html = file.read_text()
+        for address in HELD_BACK:
+            assert address not in html, (file, address)
+
+
+def test_current_work_is_described_and_marked_in_development():
     html = (SITE / "index.html").read_text()
-    for marker in ('class="topbar"', 'class="brand-orb"', 'class="masthead', 'class="wordmark"', 'class="tagline"', 'class="sky-bubbles"'):
+    for marker in ('id="work"', 'id="flash-is-dead"', 'id="games"', 'id="mcp"', 'id="stack"'):
         assert marker in html
-    assert '<link rel="stylesheet" href="/assets/site.css">' in html
-    assert "arcade" not in html.split("<body", 1)[0].split("<html", 1)[1].split(">", 1)[0]
-
-
-def test_each_site_is_linked_from_the_about_page():
-    html = (SITE / "index.html").read_text()
-    nav = html.split('<nav class="nav"', 1)[1].split("</nav>", 1)[0]
-    assert 'href="https://flashisdead.com/"' in nav
-    assert 'href="https://coolmatt.games/"' in nav
-    assert 'aria-current="page"' in nav
-
-
-def test_flash_is_dead_feature_and_tech_stack():
-    html = (SITE / "index.html").read_text()
-    assert 'id="flash-is-dead"' in html
-    assert 'href="https://flashisdead.com/"' in html
-    assert 'id="stack"' in html
-    for text in ("HTML, CSS, JavaScript", "No plugin required", "Amazon S3", "opt-in"):
+    assert html.count('class="status">In development<') == 3
+    for text in ("Amazon S3", "CloudFront", "Model Context Protocol", "opt-in"):
         assert text in html
     assert "<embed" not in html and "<object" not in html and ".swf" not in html
+
+
+def test_page_uses_only_its_own_stylesheet_and_no_held_back_art():
+    html = (SITE / "index.html").read_text()
+    assert '<link rel="stylesheet" href="/assets/main.css">' in html
+    assert "<img" not in html
+    assert not (SITE / "assets" / "cast").exists()
+    assert not (SITE / "assets" / "gifs").exists()
 
 
 def test_private_files_are_outside_published_directory():
@@ -79,13 +81,12 @@ def test_private_files_are_outside_published_directory():
     assert not any(file.name in forbidden for file in SITE.rglob("*"))
 
 
-def test_not_found_page_matches_the_banner_and_links_to_each_site():
+def test_not_found_page_links_home_and_forwards_nowhere():
     html = (SITE / "404.html").read_text()
-    for marker in ('class="topbar"', 'class="wordmark"', '/assets/site.css'):
-        assert marker in html
-    for link in ('href="https://flashisdead.com/"', 'href="https://coolmatt.games/"'):
-        assert link in html
-    assert "location.replace('https://coolmatt.games'" in html
+    assert "/assets/main.css" in html
+    assert 'href="/"' in html
+    assert 'content="noindex"' in html
+    assert "location.replace" not in html
 
 
 def test_matt_avatar_favicon_is_linked_from_the_home_page():
