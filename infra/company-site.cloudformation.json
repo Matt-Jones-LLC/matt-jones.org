@@ -62,14 +62,20 @@
     },
     "SiteIndex": {
       "Type": "AWS::CloudFront::Function",
+      "Metadata": {
+        "com.aws.cloudformation.Context": {
+          "why": "Only matt-jones.org serves the site. www and the cloudfront.net address answer with a 302 to the same path on matt-jones.org, so the unfinished preview is not a second public copy.",
+          "must": ["Never redirect when the host is matt-jones.org, or the live domain loops."]
+        }
+      },
       "Properties": {
         "Name": {"Fn::Sub": "${AWS::StackName}-index"},
         "AutoPublish": true,
         "FunctionConfig": {
-          "Comment": "Send www to matt-jones.org and resolve directory URLs",
+          "Comment": "Send every other host to matt-jones.org and resolve directory URLs",
           "Runtime": "cloudfront-js-2.0"
         },
-        "FunctionCode": "function handler(event) {\n  var request = event.request;\n  var uri = request.uri.replace(/\\\\/g, '/').replace(/^\\/+/, '/');\n  request.uri = uri;\n  var host = request.headers && request.headers.host && request.headers.host.value;\n  var qs = request.querystring || {};\n  var parts = [];\n  Object.keys(qs).forEach(function(k) {\n    (qs[k].multiValue || [qs[k]]).forEach(function(v) { parts.push(k + '=' + v.value); });\n  });\n  var query = parts.length ? '?' + parts.join('&') : '';\n  if (host === 'www.matt-jones.org') {\n    return {statusCode: 302, statusDescription: 'Found', headers: {location: {value: 'https://matt-jones.org' + uri + query}}};\n  }\n  if (uri.endsWith('/')) request.uri += 'index.html';\n  else if (uri.split('/').pop().indexOf('.') === -1) {\n    return {statusCode: 301, statusDescription: 'Moved Permanently', headers: {location: {value: uri + '/' + query}}};\n  }\n  return request;\n}\n"
+        "FunctionCode": "function handler(event) {\n  var request = event.request;\n  var uri = request.uri.replace(/\\\\/g, '/').replace(/^\\/+/, '/');\n  request.uri = uri;\n  var host = request.headers && request.headers.host && request.headers.host.value;\n  var qs = request.querystring || {};\n  var parts = [];\n  Object.keys(qs).forEach(function(k) {\n    (qs[k].multiValue || [qs[k]]).forEach(function(v) { parts.push(k + '=' + v.value); });\n  });\n  var query = parts.length ? '?' + parts.join('&') : '';\n  if (host !== 'matt-jones.org') {\n    return {statusCode: 302, statusDescription: 'Found', headers: {location: {value: 'https://matt-jones.org' + uri + query}}};\n  }\n  if (uri.endsWith('/')) request.uri += 'index.html';\n  else if (uri.split('/').pop().indexOf('.') === -1) {\n    return {statusCode: 301, statusDescription: 'Moved Permanently', headers: {location: {value: uri + '/' + query}}};\n  }\n  return request;\n}\n"
       }
     },
     "SiteDistribution": {

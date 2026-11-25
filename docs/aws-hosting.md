@@ -14,17 +14,26 @@ that made mattjonesllc.com the main address (draft pull request #3).
 | Stack | `matt-jones-company-site` in us-east-2, from `infra/company-site.cloudformation.json` |
 | Storage | S3 bucket `matt-jones-company-site-sitebucket-l1ubttp4fzso`: private, encrypted, versioned, old versions expire after 30 days |
 | CDN | CloudFront distribution `E20F8RXXFZAJRQ` |
-| Preview address | https://d29oey55glk03d.cloudfront.net |
+| Preview address | https://d29oey55glk03d.cloudfront.net. Since 2026-11-24 it redirects (302) to matt-jones.org; see below. |
 | Certificate | `arn:aws:acm:us-east-1:467008424757:certificate/de81a842-d964-4a2a-95c7-a300ecbbad3a` for matt-jones.org and www.matt-jones.org. Requested; waiting for DNS validation. |
 
 There are no servers. The bucket blocks all public access and only this distribution can read
-it. The CloudFront function sends www.matt-jones.org to matt-jones.org, adds a trailing slash to
+it. The CloudFront function sends every host other than matt-jones.org (www and the cloudfront.net
+preview address) to the same path on matt-jones.org with a 302, adds a trailing slash to
 directory URLs, and serves `index.html` for them. Missing pages return the site's 404 page with a
 real 404 status. Responses carry AWS's managed security headers (HSTS, nosniff, frame and
 referrer policies).
 
 Not set up: a budget alert (it needs a notification email), a GitHub deploy role, and automatic
 deploys. Costs at this size and traffic should be very small, but nothing here caps spending.
+
+## The preview address forwards (since 2026-11-24)
+
+Matt asked for every address that is not matt-jones.org to send visitors there, so the preview is
+no longer a second public copy of the site. The files are still in the bucket, but the preview
+address no longer shows them. To check the bucket's content before the DNS cutover, read the
+objects directly or test the function in the CloudFront console; do not remove the redirect
+without asking Matt. The checks below were made on 2026-11-23, before this change.
 
 ## Checked on the preview address
 
