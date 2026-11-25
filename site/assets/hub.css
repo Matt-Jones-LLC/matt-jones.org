@@ -1,9 +1,0 @@
-/* matt-jones.org: the few pieces this page needs on top of the shared site.css
-   (the same file Flash Is Dead and Cool Matt Games use, so the banner matches). */
-
-/* Matt stands on the masthead the way Flash and Emma do on Flash Is Dead. */
-.heroes .hero-matt { height: 170px; width: auto; }
-@media (min-width: 1000px) { .heroes .hero-matt { height: 236px; } }
-@media (max-width: 480px) { .heroes .hero-matt { height: 96px; } }
-
-.fine { margin-top: 12px; font-size: .9rem; color: var(--ink-2); }

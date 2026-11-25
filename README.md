@@ -32,8 +32,8 @@ Company content, shared development instructions, and the scripts that make a ne
 
 ```text
 site/                  Company website; the only folder published
-  index.html           About Matt: mission, work, how it's built, contact
-  assets/              site.css and site.js (copies of the shared look used by flashisdead.com and coolmatt.games), hub.css, art
+  index.html           Matt's professional page: current work, experience, credentials, contact
+  assets/              main.css (this page's own look) and the opt-in monitoring scripts
 scripts/
   bootstrap.sh         Install uv and Python; safe before a clone exists
   setup.sh             Synchronize this checkout from uv.lock

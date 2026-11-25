@@ -3,181 +3,172 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>About Matt | Matt Jones, LLC</title>
-<meta name="description" content="Matt Jones, LLC is the home of Flash Is Dead and Cool Matt Games. Matt Jones: five years in tech-facing customer experience, making web cartoons and browser games on the side.">
-<meta name="theme-color" content="#071a3d">
-<meta property="og:title" content="About Matt | Matt Jones, LLC">
-<meta property="og:description" content="The person and the company behind Flash Is Dead and Cool Matt Games.">
+<title>Matt Jones | Technical support and current work</title>
+<meta name="description" content="Matt Jones is a senior technical support specialist in Houston, Texas, with five years in customer-facing software support. This page describes his current independent work on AWS, the web and the Model Context Protocol.">
+<meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0c1424" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="Matt Jones | Technical support and current work">
+<meta property="og:description" content="Senior technical support specialist. Current independent work on AWS, the web and the Model Context Protocol.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://matt-jones.org/">
 <link rel="canonical" href="https://matt-jones.org/">
 <link rel="icon" href="/favicon.ico?v=20261124d" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20261124d">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20261124d">
-<link rel="stylesheet" href="/assets/site.css">
-<link rel="stylesheet" href="/assets/hub.css">
+<link rel="stylesheet" href="/assets/main.css">
 <script defer src="/assets/monitoring-config.js"></script>
 <script defer src="/assets/monitoring.js"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<div class="sky-bubbles" aria-hidden="true"></div>
 
-<div class="page">
-  <header class="topbar">
-    <a class="brand" href="/"><span class="brand-orb" aria-hidden="true"></span>Matt Jones</a>
-    <nav class="nav" aria-label="Site">
-      <a href="https://flashisdead.com/">Flash Is Dead</a>
-      <a href="https://coolmatt.games/">Cool Matt Games</a>
-      <a href="/" aria-current="page">About</a>
+<div class="wrap">
+  <header class="top">
+    <a class="name" href="/">Matt Jones</a>
+    <nav aria-label="Sections">
+      <a href="#work">Current work</a>
+      <a href="#experience">Experience</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="main">
-    <div class="masthead with-pal">
+    <section class="lead" aria-labelledby="lead-title">
+      <h1 id="lead-title">Senior technical support specialist with five years of resolving software problems for customers.</h1>
+      <p class="now">I am currently building original web projects on AWS and developer tools on the Model Context Protocol, published under Matt Jones, LLC.</p>
+      <p class="open">Open to full-time roles in support engineering, enablement and incident response</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:matt@matt-jones.org">Email Matt</a>
+        <a class="btn" href="https://www.linkedin.com/in/mattjoneshtx" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <section class="row" id="work" aria-labelledby="work-title">
+      <h2 id="work-title">Current work</h2>
       <div>
-        <h1 class="wordmark">Hi, I'm Matt.</h1>
-        <p class="tagline">I fix software problems for customers. After hours I build websites, games, and cartoons, all of it under Matt Jones, LLC.</p>
+        <p class="note">Independent projects, designed, built and operated by me. Each one is in active development and is not yet open to the public.</p>
+
+        <article class="entry" id="flash-is-dead">
+          <div class="entry-head">
+            <h3>Flash Is Dead</h3>
+            <span class="status">In development</span>
+          </div>
+          <p class="what">Original animated web series and its website</p>
+          <ul>
+            <li>Write and produce an original animated series, generating footage with Runway and delivering it as MP4 through the browser's native video player.</li>
+            <li>Host the site as static files on Amazon S3 behind CloudFront, with Route 53 DNS and an ACM certificate, all defined in a CloudFormation template.</li>
+            <li>Built a serverless API on AWS Lambda and DynamoDB for a visit counter and a moderated message board, with per-visitor rate limits and every post held for approval.</li>
+          </ul>
+        </article>
+
+        <article class="entry" id="games">
+          <div class="entry-head">
+            <h3>Cool Matt Games</h3>
+            <span class="status">In development</span>
+          </div>
+          <p class="what">Arcade of original browser games</p>
+          <ul>
+            <li>Designed and built four original games in plain JavaScript with Canvas and Web Audio, using no framework and no build step.</li>
+            <li>Support mouse, touch and keyboard input in every game, and keep scores and saves in the player's own browser.</li>
+            <li>Maintain a separate experimental site for testing new games and rendering methods before they are released.</li>
+          </ul>
+        </article>
+
+        <article class="entry" id="mcp">
+          <div class="entry-head">
+            <h3>Model Context Protocol tools</h3>
+            <span class="status">In development</span>
+          </div>
+          <p class="what">Servers that give AI assistants structured, checkable tools</p>
+          <ul>
+            <li>Built Alan, an MCP server and web app for job searches, in Python's standard library with no third-party dependencies.</li>
+            <li>Designed Alan around an evidence ledger, so every claim it drafts is tied to recorded proof and nothing is invented.</li>
+            <li>Built four demonstration connectors for people, time off, onboarding and helpdesk data, running against a fictional company.</li>
+          </ul>
+        </article>
+
+        <article class="entry" id="stack">
+          <div class="entry-head">
+            <h3>Operations across the projects</h3>
+          </div>
+          <p class="what">Monitoring, testing and administration</p>
+          <ul>
+            <li>Implemented opt-in browser monitoring with Datadog that stays off until a visitor enables it, honors Global Privacy Control and Do Not Track, and records no session replay.</li>
+            <li>Run automated checks with pytest, Ruff and Node before each release.</li>
+            <li>Administer DNS for four domains and a Google Workspace tenant, including identity, single sign-on and access provisioning.</li>
+          </ul>
+        </article>
       </div>
-      <div class="heroes">
-        <img class="hero-matt" src="/assets/cast/matt.webp" alt="Matt, a tired-looking cartoon guy in a green plaid shirt over a campfire t-shirt" width="190" height="600">
+    </section>
+
+    <section class="row" id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <div>
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Minted</h3>
+            <span class="dates">Current</span>
+          </div>
+          <p class="what">Floor lead and Tech Guru, seasonal support team</p>
+        </article>
+
+        <article class="entry">
+          <div class="entry-head">
+            <h3>Maven Clinic</h3>
+            <span class="dates">March 2022 to April 2026</span>
+          </div>
+          <p class="what">Senior Support Specialist at a telehealth company. Promoted twice in four years.</p>
+          <ul>
+            <li>Worked the overnight shift as the only support agent online, across chat, phone, email and video.</li>
+            <li>Held customer satisfaction above 98% while resolving about 70 tickets a day against a target of 40.</li>
+            <li>Named Top Support Performer for the 2026 launch season, handling more than 350 customer conversations a week.</li>
+            <li>Led customer communication through a major AWS outage as the senior-most person online.</li>
+            <li>Led the team's adoption of Guru AI and built an internal tool for reviewing support conversations.</li>
+            <li>Reproduced defects and wrote them up in Jira and Linear so Engineering and Product could act on them.</li>
+          </ul>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <div class="desk">
-      <section class="win" aria-labelledby="mission-title">
-        <div class="win-bar">
-          <h2 id="mission-title">The mission</h2>
-          <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <section class="row" id="credentials" aria-labelledby="credentials-title">
+      <h2 id="credentials-title">Credentials</h2>
+      <ul class="plain">
+        <li><span>AWS Certified AI Practitioner</span><span class="dates">May 2026</span></li>
+        <li><span>Google Technical Support Fundamentals</span><span class="dates">June 2026</span></li>
+        <li><span>CompTIA AI Customer Support Essentials</span><span class="dates">July 2026</span></li>
+        <li><span>CompTIA A+</span><span class="dates">In progress</span></li>
+        <li><span>B.S. in Political Science, magna cum laude, University of Houston</span></li>
+      </ul>
+    </section>
+
+    <section class="row" id="tools" aria-labelledby="tools-title">
+      <h2 id="tools-title">Tools</h2>
+      <dl class="tools">
+        <dt>Support</dt>
+        <dd>Zendesk, Salesforce, Jira, Linear, Intercom, Guru, Stripe</dd>
+        <dt>Web and cloud</dt>
+        <dd>HTML, CSS, JavaScript, Python, AWS (S3, CloudFront, Lambda, DynamoDB, CloudFormation, Route 53), GitHub Pages, Datadog</dd>
+        <dt>AI</dt>
+        <dd>Claude and Claude Code, Model Context Protocol, Runway, prompt design and model evaluation</dd>
+      </dl>
+    </section>
+
+    <section class="row" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div>
+        <p class="note">I am based in Houston, Texas. The fastest way to reach me is email.</p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:matt@matt-jones.org">Email Matt</a>
+          <a class="btn" href="https://www.linkedin.com/in/mattjoneshtx" rel="noopener">LinkedIn</a>
         </div>
-        <div class="win-body">
-          <p>Matt Jones is like anyone else. A guy who grew up on an internet that used to be fun. It had websites made by no name people that became important overnight. Now it all is in the hands of a few websites, a few people.</p>
-          <p>At Matt Jones, LLC, I want to make the internet fun again. Remember playing games on your computer? Or watching flash toons? I wanted to bring that back... so I did.</p>
-          <p><strong>Thanks for stopping by. I hope you have fun.</strong></p>
-        </div>
-      </section>
-
-      <section class="win" aria-labelledby="work-title" id="work">
-        <div class="win-bar">
-          <h2 id="work-title">Where to find the work</h2>
-          <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        </div>
-        <div class="win-body">
-          <div class="shelf">
-            <a class="cart is-new" href="https://flashisdead.com/" id="flash-is-dead">
-              <picture class="cart-new"><source media="(prefers-reduced-motion: reduce)" srcset="/assets/gifs/new-badge.png"><img class="gif" src="/assets/gifs/new-badge.gif" alt="New" width="64" height="64"></picture>
-              <span class="cart-art toon" aria-hidden="true"></span>
-              <span><strong>Flash Is Dead</strong><span>Toons and games made the way the internet used to make them. Now showing: The Overlords.</span></span>
-            </a>
-            <a class="cart" href="https://coolmatt.games/">
-              <span class="cart-art corner" aria-hidden="true"></span>
-              <span><strong>Cool Matt Games</strong><span>Small free browser games, from one-button Corner Shot to the RPG SHAPES.</span></span>
-            </a>
-          </div>
-          <p class="fine">In development: an experimental arcade for coolmattgames.io, where new games and ideas get tried before they earn a place in the main arcade.</p>
-        </div>
-      </section>
-
-      <div class="stack">
-        <section class="win" aria-labelledby="short-title">
-          <div class="win-bar">
-            <h2 id="short-title">The short version</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <p>I've spent five years on the technical side of customer experience. I'm the person you reach when the software breaks, who works out why and stays on it until it's fixed.</p>
-            <p>Four of those years were at Maven Clinic, a telehealth company, where I worked the overnight shift as the only support agent online and was promoted twice. These days I'm a floor lead and Tech Guru on Minted's seasonal team.</p>
-            <p>The web design started as a hobby and turned into a second job I don't get paid for.</p>
-          </div>
-        </section>
-
-        <section class="win" aria-labelledby="good-title">
-          <div class="win-bar">
-            <h2 id="good-title">What I'm good at</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <ul class="plain-list">
-              <li><strong>Untangling technical problems.</strong> Reproducing the bug, writing it up so an engineer can act on it, and keeping the customer in the loop.</li>
-              <li><strong>Staying calm when things are on fire.</strong> I ran customer communication through a major AWS outage as the senior-most person online.</li>
-              <li><strong>Getting teams to use AI tools.</strong> I led my team's rollout of Guru AI and built an internal tool for reviewing support conversations.</li>
-              <li><strong>Building for the web.</strong> Plain HTML, CSS and JavaScript. No frameworks were harmed in the making of these sites.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="win" aria-labelledby="why-title">
-          <div class="win-bar">
-            <h2 id="why-title">Why toons and games?</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <p>A certain math-games website got a lot of us through the school day, and a handful of cartoon sites got us through the evening. These sites are my nod to both: somewhere you go on purpose, watch or play for five minutes, and leave feeling a little better.</p>
-            <p>There are no ads, no accounts and no feed. Your high scores stay in your own browser.</p>
-          </div>
-        </section>
       </div>
-
-      <div class="stack">
-        <section class="win" aria-labelledby="scores-title">
-          <div class="win-bar">
-            <h2 id="scores-title">High scores</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <table class="scores">
-              <caption>From the day job, not the games.</caption>
-              <tbody>
-                <tr><th scope="row">Customer satisfaction<small>Maven Clinic, overnight shift</small></th><td><span class="lcd">98%+</span></td></tr>
-                <tr><th scope="row">Tickets a day<small>The target was 40</small></th><td><span class="lcd">~70</span></td></tr>
-                <tr><th scope="row">Conversations a week<small>2026 launch season</small></th><td><span class="lcd">350+</span></td></tr>
-                <tr><th scope="row">Promotions<small>In four years</small></th><td><span class="lcd">2</span></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="win" aria-labelledby="stack-title" id="stack">
-          <div class="win-bar">
-            <h2 id="stack-title">How it's built</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <p><strong>No plugin required.</strong> Flash needed a plugin. Everything I publish runs on what your browser already ships with.</p>
-            <ul class="plain-list">
-              <li><strong>Pages:</strong> HTML, CSS, JavaScript, written by hand. No framework and no build step.</li>
-              <li><strong>Games:</strong> Canvas and Web Audio. Scores and saves stay in your own browser.</li>
-              <li><strong>Toons:</strong> Written by me, generated with Runway, and played as MP4 by the browser's own video element.</li>
-              <li><strong>Hosting:</strong> Static files, no servers to run. Flash Is Dead is served from Amazon S3 through CloudFront. The arcade and this page are served from GitHub Pages.</li>
-              <li><strong>Diagnostics:</strong> Datadog, opt-in. Monitoring stays off until you turn it on. No session replay.</li>
-              <li><strong>Checks:</strong> pytest, Ruff and Node cover links, content rules and monitoring behavior before a release.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="win" aria-labelledby="hi-title" id="leadership">
-          <div class="win-bar">
-            <h2 id="hi-title">Say hi</h2>
-            <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-          </div>
-          <div class="win-body">
-            <div class="who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/gifs/mail.png"><img class="gif" src="/assets/gifs/mail.gif" alt="" width="96" height="88"></picture><p><strong>Matt Jones</strong>, Founder &amp; CEO, Matt Jones, LLC. I'm looking for my next full-time role in support engineering, enablement or incident response. If you're hiring, or you just beat my score, write to me.</p></div>
-            <div class="btn-row">
-              <a class="btn" href="mailto:matt@matt-jones.org">Email Matt</a>
-              <a class="btn btn-quiet" href="https://www.linkedin.com/in/mattjoneshtx" rel="noopener">LinkedIn</a>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+    </section>
   </main>
 
-  <footer class="status">
-    <p><picture><source media="(prefers-reduced-motion: reduce)" srcset="/assets/gifs/equalizer.png"><img class="gif" src="/assets/gifs/equalizer.gif" alt="" width="46" height="32"></picture>Matt Jones, LLC</p>
-    <p>Made in Houston, Texas by Matt Jones, 2026. <a href="https://flashisdead.com/">Flash Is Dead</a> &middot; <a href="https://coolmatt.games/">Cool Matt Games</a></p>
+  <footer class="foot">
+    <p>Matt Jones, Founder &amp; CEO, Matt Jones, LLC. Houston, Texas, 2026.</p>
   </footer>
 </div>
-
-<script src="/assets/site.js"></script>
 </body>
 </html>
